@@ -2,10 +2,11 @@ package interface_example;
 
 public class Bird {
     enum Colour {
-        GREEN, BLACK, RED, YELLOW, WHITE, BLACK_WHITE;
+        GREEN, BLACK, RED, YELLOW, WHITE, BLACK_WHITE
     }
+
     enum Gender {
-        MALE, FEMALE, OTHER;
+        MALE, FEMALE, OTHER
     }
 
     String name;
@@ -18,14 +19,16 @@ public class Bird {
                 "name='" + name + '\'' +
                 ", colour=" + colour +
                 ", gender=" + gender +
+                ", isFlyable=" + isFlyable +
+                ", isSwimmable=" + isSwimmable +
                 '}';
     }
 
-    void eat(){
-            System.out.println(getClass().getSimpleName() + " can eat " );
-    }
+    boolean isFlyable;
+    boolean isSwimmable;
 
-    boolean doesMakesNest(){
-        return false;
+
+    void eat() {
+        System.out.println(name + " can eat ");
     }
 }
