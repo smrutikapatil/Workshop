@@ -2,22 +2,25 @@ package interface_example;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class BirdRepository {
-    private List<Bird> birdList = new ArrayList();
+    //private List<Bird> birdList = new ArrayList();
+    private Set<Bird>  birdList;
+
     static BirdRepository instance;
 
     private BirdRepository() {
     }
 
-    public static BirdRepository getInstance() {
+    public static synchronized BirdRepository getInstance() {
         if (instance == null) {
             instance = new BirdRepository();
         }
         return instance;
     }
 
-    public List<Bird> getBirdList() {
+    public Set<Bird> getBirdList() {
         return birdList;
     }
 
@@ -30,11 +33,7 @@ public class BirdRepository {
     }
 
     public Bird getBird(String name) {
-//        for (int i = 0; i < birdList.size(); i++) {
-//            if (name.equalsIgnoreCase(birdList.get(i).name))
-//                return birdList.get(i);
-//        }
-//        return null;
+
         return birdList.stream().filter(bird -> bird.name.equals(name)).findFirst().orElse(null);
     }
 }

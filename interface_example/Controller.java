@@ -3,9 +3,7 @@ package interface_example;
 import java.util.Scanner;
 
 public class Controller {
-   // BirdRepository birdRepository = BirdRepository.getInstance();
-   // UserInterface userInterface = UserInterface.getInstance();
-    static final int EXIT_VALUE = 8;
+    public static final int EXIT_VALUE = 8;
 
     public static void main(String[] args) {
         UserInterface userInterface = UserInterface.getInstance();
@@ -62,6 +60,8 @@ public class Controller {
         BirdRepository birdRepository = BirdRepository.getInstance();
         Bird bird = new Bird();
         Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the bird id");
+        bird.id = sc.next();
         System.out.println("Enter the bird name");
         bird.name = sc.next();
         setBirdColour(bird);
@@ -74,7 +74,7 @@ public class Controller {
     }
 
     private void update(Bird bird) {
-        System.out.println("Enter your selection\n 1.name \n 2.colour \n 3.gender");
+        System.out.println("Enter your selection\n 1.name \n 2.colour \n 3.gender \n 4.Swimmable \n 5.Flyable \n 6.Bird Id");
         Scanner sc = new Scanner(System.in);
         int option = sc.nextInt();
         switch (option) {
@@ -96,6 +96,11 @@ public class Controller {
                 System.out.println("bird isFlyable");
                 bird.isFlyable = sc.nextBoolean();
                 break;
+            case 6:
+                System.out.println("Enter bird id");
+                bird.id = sc.next();
+                break;
+
             default:
                 System.out.println("Invalid option");
         }

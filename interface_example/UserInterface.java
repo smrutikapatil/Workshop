@@ -2,25 +2,23 @@ package interface_example;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class UserInterface {
 
     static UserInterface Instance;
-
     private UserInterface() {
     }
 
-    public static UserInterface getInstance() {
+    public static synchronized UserInterface getInstance() {
         if (Instance == null) {
             Instance = new UserInterface();
         }
         return Instance;
     }
 
-    public void printAllBirds(List<Bird> list) {
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i));
-        }
+    public void printAllBirds(Set<Bird> list) {
+        list.stream().forEach(System.out::println);
     }
 
     public int showMainMenu() {
@@ -31,15 +29,15 @@ public class UserInterface {
         return (sc.nextInt());
     }
 
-    public void printSwimmableBirds(List<Bird> list) {
+    public void printSwimmableBirds(Set<Bird> list) {
         list.stream().filter(bird -> bird.isSwimmable).forEach(System.out::println);
     }
 
-    public void printFlyableBirds(List<Bird> list) {
+    public void printFlyableBirds(Set<Bird> list) {
         list.stream().filter(bird -> bird.isFlyable).forEach(System.out::println);
     }
 
-    public void printEat(List<Bird> list) {
+    public void printEat(Set<Bird> list) {
         list.stream().forEach(Bird::eat);
     }
 }
